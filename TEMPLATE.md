@@ -3,6 +3,7 @@
 - Platform: Hack The Box
 - URL:
 - Difficulty:
+- OS:
 - User Flag: `HTB{..}`
 - Root Flag: `HTB{..}`
 

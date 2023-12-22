@@ -1,9 +1,9 @@
 # Sandworm
 
-- Platform: Hack The Box
-- URL: https://app.hackthebox.com/machines/Sandworm
-- Difficulty: Medium
-- OS: Linux
+- **Platform:** Hack The Box
+- **URL:** https://app.hackthebox.com/machines/Sandworm
+- **Difficulty:** Medium
+- **OS:** Linux
 
 ## Enumeration
 

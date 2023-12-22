@@ -214,7 +214,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 #### Searching for Vulnerabilities
 
-- there exists an [exploit for Firejail 0.9.68](https://gist.github.com/GugSaas/9fb3e59b3226e8073b3f8692859f8d25), which can be used for privilege escalation
+- An [exploit](https://gist.github.com/GugSaas/9fb3e59b3226e8073b3f8692859f8d25) exists for    Firejail 0.9.68, which can be used for privilege escalation
 
 #### Exploitation
 

@@ -135,6 +135,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
             "username": "silentobserver"
         },
     ```
+
 2. With these credentials, an SSH connection is possible for the user `silentobserver`, who has the user flag in his home directory 🚩
     - user is still in `jailer` group
 
@@ -154,7 +155,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 1. Edit `/opt/crates/logger/src/logger.rs` and insert the code for a reverse shell
     - https://stackoverflow.com/questions/48958814/what-is-the-rust-equivalent-of-a-reverse-shell-script-written-in-python
     - <details>
-        <summary>modified `logger.rs`</summary>
+        <summary>modified logger.rs</summary>
         
         ```rust
         extern crate chrono;

@@ -8,3 +8,4 @@ _also checkout my toolbox at [linus.foo/toolbox](https://linus.foo/toolbox)_ ðŸ§
 
 #### Medium
 - [Sandworm](htb/Sandworm.md): Flask SSTI & RCE, Rust, Firejail *(CVE-2022-31214)* 
+- [Jupiter](htb/Jupiter.md): Grafana, PostgreSQL injection, Jupyter

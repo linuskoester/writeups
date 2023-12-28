@@ -163,44 +163,44 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     ssh -L 3000:localhost:3000 juno@10.10.11.216
     ssh -L 8888:localhost:8888 juno@10.10.11.216    
     ```
-    <details>
-    <summary>nmap output</summary>
-    
-    ```
-    PORT     STATE SERVICE VERSION
-    3000/tcp open  ppp?
-    | fingerprint-strings:
-    |   GenericLines, Help:
-    |     HTTP/1.1 400 Bad Request
-    |     Content-Type: text/plain; charset=utf-8
-    |     Connection: close
-    |     Request
-    |   GetRequest:
-    |     HTTP/1.0 200 OK
-    |     Cache-Control: no-store
-    |     Content-Type: text/html; charset=UTF-8
-    |     X-Content-Type-Options: nosniff
-    |     X-Frame-Options: deny
-    |     X-Xss-Protection: 1; mode=block
-    |     Date: Thu, 07 Sep 2023 11:30:48 GMT
-    |     <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width"/><meta name="theme-color" content="#000"/><title>Grafana</title><base href="/"/><link rel="icon" type="image/png" href="public/img/fav32.png"/><link rel="apple-touch-icon" sizes="180x180" href="public/img/apple-touch-icon.png"/><link rel="mask-icon" href="public/img/grafana_mask_icon.svg" color="#F05A28"/><link rel="stylesheet" href="public/build/grafana.dark.922c73a268c5f56fe5fe.css"/><script nonce="">performance.mark('frontend_boot_css_time_seconds');</script><meta name="apple-mobile-web-app-capable" content=
-    |   HTTPOptions:
-    |     HTTP/1.0 404 Not Found
-    |     Cache-Control: no-store
-    |     Content-Type: text/html; charset=UTF-8
-    |     X-Content-Type-Options: nosniff
-    |     X-Frame-Options: deny
-    |     X-Xss-Protection: 1; mode=block
-    |     Date: Thu, 07 Sep 2023 11:30:53 GMT
-    |_    <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width"/><meta name="theme-color" content="#000"/><title>Grafana</title><base href="/"/><link rel="icon" type="image/png" href="public/img/fav32.png"/><link rel="apple-touch-icon" sizes="180x180" href="public/img/apple-touch-icon.png"/><link rel="mask-icon" href="public/img/grafana_mask_icon.svg" color="#F05A28"/><link rel="stylesheet" href="public/build/grafana.dark.922c73a268c5f56fe5fe.css"/><script nonce="">performance.mark('frontend_boot_css_time_seconds');</script><meta name="apple-mobile-web-app-capable" c
-    8888/tcp open  http    Tornado httpd 6.2
-    | http-title: Jupyter Notebook
-    |_Requested resource was /login?next=%2Ftree%3F
-    |_http-server-header: TornadoServer/6.2
-    | http-robots.txt: 1 disallowed entry
-    |_/
-    ```
-    </details>
+    - <details>
+        <summary>nmap output</summary>
+        
+        ```
+        PORT     STATE SERVICE VERSION
+        3000/tcp open  ppp?
+        | fingerprint-strings:
+        |   GenericLines, Help:
+        |     HTTP/1.1 400 Bad Request
+        |     Content-Type: text/plain; charset=utf-8
+        |     Connection: close
+        |     Request
+        |   GetRequest:
+        |     HTTP/1.0 200 OK
+        |     Cache-Control: no-store
+        |     Content-Type: text/html; charset=UTF-8
+        |     X-Content-Type-Options: nosniff
+        |     X-Frame-Options: deny
+        |     X-Xss-Protection: 1; mode=block
+        |     Date: Thu, 07 Sep 2023 11:30:48 GMT
+        |     <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width"/><meta name="theme-color" content="#000"/><title>Grafana</title><base href="/"/><link rel="icon" type="image/png" href="public/img/fav32.png"/><link rel="apple-touch-icon" sizes="180x180" href="public/img/apple-touch-icon.png"/><link rel="mask-icon" href="public/img/grafana_mask_icon.svg" color="#F05A28"/><link rel="stylesheet" href="public/build/grafana.dark.922c73a268c5f56fe5fe.css"/><script nonce="">performance.mark('frontend_boot_css_time_seconds');</script><meta name="apple-mobile-web-app-capable" content=
+        |   HTTPOptions:
+        |     HTTP/1.0 404 Not Found
+        |     Cache-Control: no-store
+        |     Content-Type: text/html; charset=UTF-8
+        |     X-Content-Type-Options: nosniff
+        |     X-Frame-Options: deny
+        |     X-Xss-Protection: 1; mode=block
+        |     Date: Thu, 07 Sep 2023 11:30:53 GMT
+        |_    <!doctype html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="viewport" content="width=device-width"/><meta name="theme-color" content="#000"/><title>Grafana</title><base href="/"/><link rel="icon" type="image/png" href="public/img/fav32.png"/><link rel="apple-touch-icon" sizes="180x180" href="public/img/apple-touch-icon.png"/><link rel="mask-icon" href="public/img/grafana_mask_icon.svg" color="#F05A28"/><link rel="stylesheet" href="public/build/grafana.dark.922c73a268c5f56fe5fe.css"/><script nonce="">performance.mark('frontend_boot_css_time_seconds');</script><meta name="apple-mobile-web-app-capable" c
+        8888/tcp open  http    Tornado httpd 6.2
+        | http-title: Jupyter Notebook
+        |_Requested resource was /login?next=%2Ftree%3F
+        |_http-server-header: TornadoServer/6.2
+        | http-robots.txt: 1 disallowed entry
+        |_/
+        ```
+        </details>
 
     - Port `3000` seems to be the Grafana instance
     - Port `8888` is a Jupyter notebook 

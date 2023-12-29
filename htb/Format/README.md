@@ -1,5 +1,7 @@
 # Format
 
+<p align="center"><img src="assets/Format.png" width="400"></p>
+
 -   **Platform:** Hack The Box
 -   **URL:** https://app.hackthebox.com/machines/Format
 -   **Difficulty:** Medium

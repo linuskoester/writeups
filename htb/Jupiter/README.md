@@ -1,5 +1,7 @@
 # Jupiter
 
+<p align="center"><img src="assets/Jupiter.png" width="400"></p>
+
 - **Platform:** Hack The Box
 - **URL:** https://app.hackthebox.com/machines/Jupiter
 - **Difficulty:** Medium

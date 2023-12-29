@@ -1,5 +1,7 @@
 # Sandworm
 
+<p align="center"><img src="assets/Sandworm.png" width="400"></p>
+
 - **Platform:** Hack The Box
 - **URL:** https://app.hackthebox.com/machines/Sandworm
 - **Difficulty:** Medium

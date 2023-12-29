@@ -1,5 +1,7 @@
 # Challenge Name
 
+<p align="center"><img src="" width="400"></p>
+
 - **Platform:** Hack The Box
 - **URL:** 
 - **Difficulty:** 

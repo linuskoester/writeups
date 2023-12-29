@@ -1,5 +1,7 @@
 # PC
 
+<p align="center"><img src="assets/PC.png" width="400"></p>
+
 - **Platform:** Hack The Box
 - **URL:** https://app.hackthebox.com/machines/PC
 - **Difficulty:** Easy

@@ -85,11 +85,11 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     ```
 2. After uploading the generated image, we can download the compressed version of it and analyze it using `identify -verbose`. At the end of the output we can see a large block of hex values:
     
-    ![Screenshot of output from identify command](assets/identify-output.png)
-3. Decoding the hex block e.g. using CyberChef will reveal credentials:
+   <p align="center"><img src="assets/identify-output.png" width="400"></p>
+4. Decoding the hex block e.g. using CyberChef will reveal credentials:
     - username: `emily`
     - password: `abigchonkyboi123`
-4. With these credentials we can login via ssh as `emily`. 🚩
+5. With these credentials we can login via ssh as `emily`. 🚩
 
 ## Privilege Escalation
 

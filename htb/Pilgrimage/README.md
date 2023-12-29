@@ -1,4 +1,4 @@
-# Challenge Name
+# Pilgrimage
 
 - **Platform:** Hack The Box
 - **URL:** https://app.hackthebox.com/machines/Pilgrimage

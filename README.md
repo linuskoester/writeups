@@ -7,6 +7,7 @@ _also checkout my toolbox at [linus.foo/toolbox](https://linus.foo/toolbox)_ ðŸ§
 ### Linux
 
 #### Easy
+- [PC](htb/PC): gRPC, pyLoad RCE *(CVE-2023-0297)*
 - [Pilgrimage](htb/Pilgrimage): ImageMagick LFI *(CVE-2022-44268)*, binwalk RCE *(CVE-2022-4510)*
 - [Topology](htb/Topology): LaTeX LFI
 

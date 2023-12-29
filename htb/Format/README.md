@@ -1,4 +1,4 @@
-# Challenge Name
+# Format
 
 -   **Platform:** Hack The Box
 -   **URL:** https://app.hackthebox.com/machines/Format

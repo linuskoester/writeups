@@ -7,11 +7,14 @@ _also checkout my toolbox at [linus.foo/toolbox](https://linus.foo/toolbox)_ ðŸ§
 ### Linux
 
 #### Easy
-- [PC](htb/PC): gRPC, pyLoad RCE *(CVE-2023-0297)*
-- [Pilgrimage](htb/Pilgrimage): ImageMagick LFI *(CVE-2022-44268)*, binwalk RCE *(CVE-2022-4510)*
-- [Topology](htb/Topology): LaTeX LFI
+
+-   [Broker](htb/Broker): Apache ActiveMQ RCE _(CVE-2023-46604)_, sudo nginx
+-   [PC](htb/PC): gRPC, pyLoad RCE _(CVE-2023-0297)_
+-   [Pilgrimage](htb/Pilgrimage): ImageMagick LFI _(CVE-2022-44268)_, binwalk RCE _(CVE-2022-4510)_
+-   [Topology](htb/Topology): LaTeX LFI
 
 #### Medium
-- [Format](htb/Format): PHP LFI, nginx SSRF, Redis Socket, Python `str.format()`
-- [Jupiter](htb/Jupiter): Grafana, PostgreSQL injection, Jupyter notebook
-- [Sandworm](htb/Sandworm): Flask SSTI, Rust, Firejail *(CVE-2022-31214)* 
+
+-   [Format](htb/Format): PHP LFI, nginx SSRF, Redis Socket, Python `str.format()`
+-   [Jupiter](htb/Jupiter): Grafana, PostgreSQL injection, Jupyter notebook
+-   [Sandworm](htb/Sandworm): Flask SSTI, Rust, Firejail _(CVE-2022-31214)_

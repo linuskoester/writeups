@@ -1,4 +1,4 @@
-# Challenge Name
+# Wifinetic
 
 <p align="center"><img src="assets/Wifinetic.png" width="400"></p>
 

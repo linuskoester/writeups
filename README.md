@@ -12,6 +12,7 @@ _also checkout my toolbox at [linus.foo/toolbox](https://linus.foo/toolbox)_ ðŸ§
 -   [PC](htb/PC): gRPC, pyLoad RCE _(CVE-2023-0297)_
 -   [Pilgrimage](htb/Pilgrimage): ImageMagick LFI _(CVE-2022-44268)_, binwalk RCE _(CVE-2022-4510)_
 -   [Topology](htb/Topology): LaTeX LFI
+-   [Wifinetic](htb/Wifinetic): Anonymous FTP, OpenWRT, WPS Bruteforce 
 
 #### Medium
 
